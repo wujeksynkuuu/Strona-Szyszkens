@@ -105,7 +105,7 @@ typeEffect();
 
 
 // --- LANYARD ---
-const DISCORD_ID = "933668988150489088";
+const DISCORD_ID = "1014641968938225756";
 async function fetchDiscordStatus() {
     try {
         const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
