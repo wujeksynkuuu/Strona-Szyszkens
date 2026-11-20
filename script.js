@@ -102,56 +102,7 @@ function typeEffect() {
 }
 typeEffect();
 
-// --- TERMINAL ---
-const bootLines = [
-    "[    0.000000] Linux version 6.2.0-arch1 (gcc 12.2.1) #1 SMP PREEMPT",
-    "[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-linux root=/dev/sda1 rw",
-    "[    0.142051] ACPI: Core revision 20221020",
-    "[    0.354210] PCI: Using configuration type 1 for base access",
-    "[    0.581034] systemd[1]: Detected architecture x86-64.",
-    "[    0.793512] systemd[1]: Set hostname to <localhost>.",
-    "[    0.921044] systemd[1]: Created slice Slice /system/getty.",
-    "[    1.021874] systemd[1]: Started Journal Service.",
-    "[    1.154219] systemd[1]: Reached target Local File Systems.",
-    "[    1.310997] systemd[1]: Started Network Manager.",
-    "[    1.456821] systemd[1]: Reached target Network is Online.",
-    "[    1.589442] systemd[1]: Started Web Server (Nginx).",
-    "[    1.720331] systemd[1]: Started OpenSSH server daemon.",
-    "[    1.854120] systemd[1]: Reached target Multi-User System.",
-    "[    2.001994] systemd[1]: Startup finished in 1.842s (kernel) + 0.987s (userspace)."
-];
-const terminalOutput = document.getElementById("terminal-output");
-const overlay = document.getElementById("overlay");
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
-const bgVideo = document.getElementById("bgVideo");
 
-async function runBootSequence() {
-    if (!terminalOutput) return;
-    const totalChars = bootLines.reduce((sum, line) => sum + line.length, 0);
-    let typedChars = 0;
-    for (let line of bootLines) {
-        const div = document.createElement("div"); div.className = "term-line"; terminalOutput.appendChild(div);
-        for (let i = 0; i < line.length; i++) {
-            div.textContent = line.substring(0, i + 1);
-            const cursor = document.createElement("span"); cursor.className = "term-cursor"; div.appendChild(cursor);
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            typedChars++; let progress = Math.floor((typedChars / totalChars) * 100);
-            if (progressBar.style.width !== progress + "%") { progressBar.style.width = progress + "%"; progressText.textContent = progress + "%"; }
-            await new Promise(r => setTimeout(r, 5));
-        }
-        const cursor = div.querySelector(".term-cursor"); if (cursor) cursor.remove();
-        await new Promise(r => setTimeout(r, Math.random() * 50 + 30));
-    }
-    progressBar.style.width = "100%"; progressText.textContent = "100%";
-    await new Promise(r => setTimeout(r, 200));
-    const successMsg = document.createElement("div"); successMsg.className = "term-line success"; successMsg.textContent = "[  OK  ] Access Granted. Redirecting..."; terminalOutput.appendChild(successMsg); terminalOutput.scrollTop = terminalOutput.scrollHeight;
-    await new Promise(r => setTimeout(r, 800));
-    if (overlay) overlay.classList.add("hidden");
-    if (bgVideo && bgVideo.paused) bgVideo.play().catch(() => {});
-    forcePlayAudio();
-}
-window.addEventListener("load", runBootSequence);
 
 // --- LANYARD ---
 const DISCORD_ID = "933668988150489088";
