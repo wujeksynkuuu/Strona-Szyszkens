@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wujaszek</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+    <canvas id="particles"></canvas>
+
+    <!-- TERMINAL BOOT SCREEN -->
+    <div id="overlay" class="overlay">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="terminal-title">root@localhost:~#</span>
+            </div>
+            <div class="terminal-body" id="terminal-output"></div>
+            <div class="terminal-progress-container">
+                <div class="terminal-progress-track">
+                    <div class="terminal-progress-bar" id="progressBar"></div>
+                </div>
+                <span class="terminal-progress-text" id="progressText">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <video autoplay muted loop playsinline id="bgVideo">
+        <source src="Video.mov" type="video/mp4">
+    </video>
+
+    <div class="glow-bg"></div>
+
+    <!-- AUDIO KONTROLKI -->
+    <div class="audio-control-wrapper" id="audioWrapper">
+        <button class="mute-btn" id="muteBtn" title="Wycisz/Odcisz">
+            <i class="fa-solid fa-volume-high" id="muteIcon"></i>
+        </button>
+        <div class="volume-container">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+        </div>
+    </div>
+
+    <!-- NOW PLAYING WIDGET -->
+    <div class="now-playing" id="nowPlayingWidget">
+        <div class="np-compact">
+            <div class="equalizer">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="np-compact-text">NOW PLAYING</span>
+        </div>
+        <div class="np-expanded">
+            <div class="np-vinyl-wrapper">
+                <div class="np-vinyl-progress" id="vinylProgress"></div>
+                <div class="np-vinyl">
+                    <i class="fa-solid fa-compact-disc"></i>
+                </div>
+            </div>
+            <div class="np-info">
+                <span class="np-label">Aktualnie grane</span>
+                <span class="np-title">wiv — i love u</span>
+                <span class="np-subtitle">Wujaszek OST</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- GŁÓWNA KARTA -->
+    <div class="main-layout">
+        <main class="content" id="contentCard">
+            <div class="avatar-wrapper">
+                <img src="moj-awatar.jpg" alt="Mój Awatar" class="avatar">
+                <span id="discordStatusDot" class="status-dot offline"></span>
+            </div>
+            
+            <h1 class="title" data-text="Wujaszek">Wujaszek</h1>
+            
+            <p class="subtitle">
+                <span id="typewriter"></span><span class="cursor">_</span>
+            </p>
+
+            <div class="skills-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="tag"><i class="fa-brands fa-discord"></i> Bot Creator</span>
+                <span class="tag"><i class="fa-solid fa-server"></i> Serwer Creator</span>
+            </div>
+          
+            <div class="action-buttons">
+                <a href="https://discord.gg/MEGM3JV85z" target="_blank" class="btn btn-primary magnetic">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+                <a href="https://discord.com/users/933668988150489088" target="_blank" class="btn btn-secondary magnetic">
+                    <i class="fa-solid fa-user-plus"></i> Kontakt
+                </a>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://github.com/wujeksynkuuu" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://steamcommunity.com/id/wujek_z_ameryki" target="_blank" title="Steam"><i class="fa-brands fa-steam"></i></a>
+                <a href="https://www.tiktok.com/@wujek.synkuu" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://namemc.com/profile/wujek_synkuu.1" target="_blank" title="NameMC">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align: -0.125em;">
+                        <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M12 22V12" stroke="currentColor" stroke-width="2"/>
+                        <path d="M22 7L12 12L2 7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <audio id="bgAudio" src="Muzyka.mp3" loop autoplay muted></audio>
+    <script src="script.js"></script>
+</body>
+</html>
