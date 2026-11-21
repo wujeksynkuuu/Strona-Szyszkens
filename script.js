@@ -87,7 +87,7 @@ document.addEventListener('click', (e) => {
 });
 
 // --- TYPEWRITER ---
-const words = ["Szyszkens", "Ryszkens", "Chuj cię to", "𝓘𝓯 𝓘 𝔀𝓪𝓼 𝓽𝓱𝓮 𝓶𝓸𝓸𝓷 𝔀𝓸𝓾𝓵𝓭 𝔂𝓸𝓾 𝓼𝓽𝓲𝓵𝓵 𝓵𝓸𝓸𝓴 𝓯𝓸𝓻 𝓽𝓱𝓮 𝓼𝓽𝓪𝓻𝓼?"];
+const words = ["Szyszkens", "Ryszkens", "", ""];
 let wordIndex = 0, charIndex = 0, isDeleting = false;
 const typewriterElement = document.getElementById("typewriter");
 function typeEffect() {
